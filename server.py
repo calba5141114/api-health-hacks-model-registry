@@ -19,7 +19,7 @@ ix = open_dir("index")
 
 # upload folder temporarily might delete later in place of gcloud
 UPLOAD_FOLDER = './uploads'
-ALLOWED_EXTENSIONS = set(['pickle'])
+ALLOWED_EXTENSIONS = set(['pickle', 'model'])
 
 application = Flask(__name__)
 application.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
