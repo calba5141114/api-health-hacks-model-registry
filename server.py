@@ -1,7 +1,23 @@
 from flask import Flask, flash, request, redirect, url_for
 import os
 from werkzeug.utils import secure_filename
+from whoosh.fields import Schema, STORED, ID, KEYWORD, TEXT
+import os.path
+from whoosh.index import create_in, open_dir
 
+# index engine setup title of package, blob_url for Gcloud Storage, 
+schema = Schema(title=TEXT(stored=True),
+                blob_url=TEXT,
+                path=ID(stored=True),
+                tags=KEYWORD)
+
+if not os.path.exists("index"):
+    os.mkdir("index")
+ix = create_in("index", schema)
+
+ix = open_dir("index")
+
+# upload folder temporarily might delete later in place of gcloud
 UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = set(['pickle'])
 
@@ -16,7 +32,7 @@ def allowed_file(filename):
 
 @application.route("/upload", methods=['GET', 'POST'])
 def upload_file():
-    # todo: push to gcloud and return URL 
+    # todo: push to gcloud and return URL
     if request.method == 'POST':
         if 'file' not in request.files:
             flash('no file part')
