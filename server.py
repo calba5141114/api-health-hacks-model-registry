@@ -29,7 +29,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-
+# will post to gcloud soon
 @application.route("/upload", methods=['GET', 'POST'])
 def upload_file():
     # todo: push to gcloud and return URL
