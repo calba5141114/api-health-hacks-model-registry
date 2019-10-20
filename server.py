@@ -40,6 +40,18 @@ def upload_file():
     '''
 
 
+@application.route("/add-to-index", methods=['POST'])
+def add_to_index():
+    # todo: add url to blob store and name of pkg to whoosh
+    pass
+
+
+@application.route("/search-the-index", methods=['GET'])
+def search_the_index():
+    # todo: query whoosh indexing engine
+    pass
+
+
 @application.route("/")
 def hello():
     return "<h1 style='color:blue'>Hello There!</h1>"
