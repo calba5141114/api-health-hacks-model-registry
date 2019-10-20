@@ -8,8 +8,7 @@ from whoosh.index import create_in, open_dir
 # index engine setup title of package, blob_url for Gcloud Storage, 
 schema = Schema(title=TEXT(stored=True),
                 blob_url=TEXT,
-                path=ID(stored=True),
-                tags=KEYWORD)
+                tags=KEYWORD, description=TEXT)
 
 if not os.path.exists("index"):
     os.mkdir("index")
@@ -59,7 +58,10 @@ def upload_file():
 
 @application.route("/add-to-index", methods=['POST'])
 def add_to_index():
+    # name of the author/org description blob_url
     # todo: add url to blob store and name of pkg to whoosh
+    writer = ix.writer()
+
     pass
 
 
