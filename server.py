@@ -16,6 +16,7 @@ def allowed_file(filename):
 
 @application.route("/upload", methods=['GET', 'POST'])
 def upload_file():
+    # todo: push to gcloud and return URL 
     if request.method == 'POST':
         if 'file' not in request.files:
             flash('no file part')
